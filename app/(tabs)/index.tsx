@@ -1,70 +1,115 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
+import React from 'react';
+import { StyleSheet, TextInput, View, Button, Text } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 
-export default function HomeScreen() {
+export default function LoginScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <ThemedView style={styles.container}>
+      {/* Bolas decorativas no fundo */}
+      <View style={[styles.redCircle, styles.redCircle1]} />
+      <View style={[styles.redCircle, styles.redCircle2]} />
+      <View style={[styles.redCircle, styles.redCircle3]} />
+
+      {/* Contêiner do formulário de login com fundo transparente */}
+      <View style={styles.formContainer}>
+        <Text style={styles.loginText}>LOGIN</Text>
+        <TextInput 
+          placeholder="E-mail:" 
+          style={styles.input} 
+          keyboardType="email-address" 
+          placeholderTextColor="black" 
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">felipe!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Cronograma 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <TextInput 
+          placeholder="Senha:" 
+          style={styles.input} 
+          secureTextEntry 
+          placeholderTextColor="black" 
+        />
+
+        <Text style={styles.forgotPassword}>
+          Esqueceu a senha
+        </Text>
+
+        <View style={styles.buttonContainer}>
+          <Button title="ENTRAR" color="black" onPress={() => alert('Login efetuado')} />
+        </View>
+      </View>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    backgroundColor: '#ffffff', // Fundo branco para a tela principal
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  formContainer: {
+    padding: 30,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)', // Fundo transparente branco
+    borderRadius: 15,
+    elevation: 5,
+    width: '90%',
+    maxWidth: 350, // Limite de largura para o formulário
+    borderWidth: 1,
+    borderColor: '#D32F2F',
+    alignItems: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  loginText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
+    color: 'black',
+  },
+  input: {
+    height: 40,
+    width: '100%',
+    borderColor: '#D32F2F', // Borda vermelha nos campos de entrada
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+    color: 'black',
+    textAlign: 'center', // Centralização dos textos nos inputs
+  },
+  forgotPassword: {
+    textAlign: 'center',
+    color: 'black',
+    marginBottom: 20,
+  },
+  buttonContainer: {
+    borderRadius: 20,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#D32F2F',
+  },
+  // Estilos para as bolas vermelhas no fundo
+  redCircle: {
     position: 'absolute',
+    backgroundColor: '#D32F2F',
+    opacity: 0.8,
+  },
+  redCircle1: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    top: 80,
+    left: -30,
+  },
+  redCircle2: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    top: 20,
+    right: -40,
+  },
+  redCircle3: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    bottom: 100,
+    left: 40,
   },
 });
