@@ -1,37 +1,52 @@
 import React from 'react';
-import { StyleSheet, TextInput, View, Button, Text } from 'react-native';
+import { StyleSheet, TextInput, View, Text, TouchableOpacity, Image } from 'react-native';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function LoginScreen() {
   return (
     <ThemedView style={styles.container}>
+      {/* Imagem do SESI no topo */}
+      <Image 
+        source={require('@/assets/images/SesiFot.png')} // Atualize para o nome correto do arquivo
+        style={styles.logo} 
+      />
+      
+      <Text style={styles.forgotPassword}></Text>
+   
+      
       {/* Bolas decorativas no fundo */}
       <View style={[styles.redCircle, styles.redCircle1]} />
       <View style={[styles.redCircle, styles.redCircle2]} />
+      <View style={[styles.redCircle, styles.redCircle4]} />
       <View style={[styles.redCircle, styles.redCircle3]} />
 
       {/* Contêiner do formulário de login com fundo transparente */}
       <View style={styles.formContainer}>
         <Text style={styles.loginText}>LOGIN</Text>
+        
+        <Text style={styles.forgotPassword}>E-mail:</Text>
         <TextInput 
-          placeholder="E-mail:" 
+          placeholder="" 
           style={styles.input} 
           keyboardType="email-address" 
           placeholderTextColor="black" 
         />
+
+        <Text style={styles.forgotPassword}>Senha</Text>
         <TextInput 
-          placeholder="Senha:" 
+          placeholder="" 
           style={styles.input} 
           secureTextEntry 
           placeholderTextColor="black" 
         />
 
-        <Text style={styles.forgotPassword}>
-          Esqueceu a senha
-        </Text>
+        <Text style={styles.forgotPassword}>Esqueceu a senha</Text>
 
+        {/* Substituindo o Button por TouchableOpacity */}
         <View style={styles.buttonContainer}>
-          <Button title="ENTRAR" color="black" onPress={() => alert('Login efetuado')} />
+          <TouchableOpacity style={styles.button} onPress={() => alert('Login efetuado')}>
+            <Text style={styles.buttonText}>ENTRAR</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ThemedView>
@@ -41,12 +56,17 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffffff', // Fundo branco para a tela principal
   },
+  logo: {
+    width: '100%', // Ajuste a largura para ocupar 100%
+    height: 200, // A altura agora é maior
+    resizeMode: 'contain', // Mantém a proporção da imagem
+    marginBottom: 20, // Espaçamento entre a imagem e o formulário
+  },
   formContainer: {
-    padding: 30,
+    padding: 50,
     backgroundColor: 'rgba(255, 255, 255, 0.8)', // Fundo transparente branco
     borderRadius: 15,
     elevation: 5,
@@ -78,38 +98,62 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'black',
     marginBottom: 20,
+    fontSize: 20, // Aumente esse valor conforme necessário
   },
   buttonContainer: {
     borderRadius: 20,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: '#D32F2F',
+    marginTop: 20,
+  },
+  button: {
+    backgroundColor: 'white', // Fundo branco no botão
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 20,
+  },
+  buttonText: {
+    color: 'black', // Cor preta para o texto do botão
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   // Estilos para as bolas vermelhas no fundo
   redCircle: {
     position: 'absolute',
-    backgroundColor: '#D32F2F',
+    backgroundColor: '#ff0303',
     opacity: 0.8,
   },
   redCircle1: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    top: 80,
-    left: -30,
+    width: 250,
+    height: 250,
+    borderRadius: 200,
+    top: 150,
+    left: -60,
   },
   redCircle2: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    top: 20,
-    right: -40,
+    width: 220,
+    height: 220,
+    borderRadius: 200,
+    bottom: -25,
+    left: 250,
   },
   redCircle3: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    bottom: 100,
-    left: 40,
+    width: 150,
+    height: 150,
+    borderRadius: 200,
+    top: 300,
+    left: 60,
+    backgroundColor: '#ff0000',
+  },
+  redCircle4: {
+    width: 150,
+    height: 150,
+    borderRadius: 200,
+    bottom: 105,
+    left: 200,
+    backgroundColor: '#ff0000',
   },
 });
+
