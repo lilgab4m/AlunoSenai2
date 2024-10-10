@@ -155,5 +155,5 @@ const styles = StyleSheet.create({
     left: 200,
     backgroundColor: '#ff0000',
   },
-});
+}); "d"
 
